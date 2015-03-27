@@ -1,5 +1,6 @@
 package com.example.admin.actiongrasp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -31,23 +32,29 @@ public class ConnectionActivity extends ActionBarActivity {
        @Override
        public void onClick(View v) {
 
-           Intent intent=new Intent();
-          // Bundle bundle=new Bundle();
-           intent.setClass(ConnectionActivity.this,AutomaticActivity.class);
-           startActivityForResult(intent,0);
+
+           Connect_Act(AutomaticActivity.class);
        }
-    };
-    private Button.OnClickListener Manual =new Button.OnClickListener(){
+   };
+   private Button.OnClickListener Manual =new Button.OnClickListener(){
 
-        @Override
-        public void onClick(View v) {
+       @Override
+       public void onClick(View v) {
 
-            Intent intent=new Intent();
-            // Bundle bundle=new Bundle();
-            intent.setClass(ConnectionActivity.this,InputActivity.class);
-            startActivityForResult(intent,0);
-        }
-    };
+
+           Connect_Act(InputActivity.class);
+       }
+   };
+
+
+   private void Connect_Act(Class target)
+   {
+       Intent intent=new Intent();
+       // Bundle bundle=new Bundle();
+       intent.setClass(ConnectionActivity.this,target);
+       startActivityForResult(intent,0);
+   }
+
 
 
 
