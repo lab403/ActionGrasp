@@ -17,7 +17,12 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.admin.actiongrasp" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca85f4b4-c3ce-4a23-988d-d86d7d911a28" name="Default" comment="" />
+    <list default="true" id="ca85f4b4-c3ce-4a23-988d-d86d7d911a28" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Admin\Documents\GitHub\ActionGrasp\.idea\libraries\appcompat_v7_21_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Admin\Documents\GitHub\ActionGrasp\.idea\libraries\support_annotations_21_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Admin\Documents\GitHub\ActionGrasp\.idea\libraries\support_v4_21_0_2.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="ActionGrasp.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -116,6 +121,11 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="true" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="SYNC_SETTING" value="DONT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="tasksExpandState">
@@ -685,7 +695,7 @@
     <option name="width" value="1296" />
     <option name="height" value="786" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -965,7 +975,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/PhoneMyApplication" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="4df14c6c2588af31" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Android_Wear_Round_API_21" />
-    <property name="options.lastSelected" value="settings.github" />
+    <property name="options.lastSelected" value="vcs.Git" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
