@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -98,60 +99,61 @@ public class InputActivity extends ActionBarActivity {
             Toast.makeText(getApplication(), MES, Toast.LENGTH_LONG).show(); // 列印異常資訊
             Toast.makeText(getApplication(), MES, Toast.LENGTH_LONG).show();
         }
-    };
-    // 方法:建立連線
-    private void mConnectServer(){
-        SERVER_IP= serverIP.getText().toString();
-        SERVER_PORT = 3579;
+        // 方法:建立連線
+        private void mConnectServer(){
+            SERVER_IP= serverIP.getText().toString();
+            SERVER_PORT = 3579;
 
-        // 如thread存在則移除它
-        if(! mThread.isInterrupted()) {
-            try{
-                mThread.interrupt();
-            }catch(Exception e){
-                Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
+            // 如thread存在則移除它
+            if(mThread!=null) {
+                if (!mThread.isInterrupted()) {
+                    try {
+                        mThread.interrupt();
+                    } catch (Exception e) {
+                        Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
             }
+
+            // 建立與SERVER連線
+            mThread=new HandlerThread("writer");
+            mThread.start();
+            mThreadHandler=new Handler(mThread.getLooper());
+            mThreadHandler.post(tSocketClient);
         }
 
-        // 建立與SERVER連線
-        mThread=new HandlerThread("writer");
-        mThread.start();
-        mThreadHandler=new Handler(mThread.getLooper());
-        mThreadHandler.post(tSocketClient);
-    }
-
-    // 執行緒:作為客戶端連線
-    private Runnable tSocketClient=new Runnable() {
-        @Override
-        public void run() {
-            String in;
-            Socket cs = null;
-            DataInputStream din;
-            try {
-                cs = new Socket(SERVER_IP, SERVER_PORT);// 連接伺服器(IP依您電腦位址來修改)
-                dout = new DataOutputStream(cs.getOutputStream());// 得到輸出串流
-                dout.writeUTF(MRCODE_CONNECT);// 向伺服器發送訊息
-
-                din = new DataInputStream(cs.getInputStream());// 得到輸出串流
-                in =din.readUTF();// 向伺服器發送訊息
-
-                if(in.equalsIgnoreCase("Connected")) {
-                    Toast.makeText(getApplication(),"Connected",Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getApplication(),in,Toast.LENGTH_LONG).show();
-                }
-
-            } catch (Exception e) {
-                Toast.makeText(getApplication(), e.toString(), Toast.LENGTH_LONG).show(); // 列印異常資訊
-            } finally {// 用finally語句塊確保動作執行
+        // 執行緒:作為客戶端連線
+        private Runnable tSocketClient=new Runnable() {
+            @Override
+            public void run() {
+                String in;
+                Socket cs = null;
+                DataInputStream din;
                 try {
-                    if (dout != null) dout.close();// 關閉輸入串流
-                    if (cs != null) cs.close();// 關閉Socket連接
+                    cs = new Socket(SERVER_IP, SERVER_PORT);// 連接伺服器(IP依您電腦位址來修改)
+                    dout = new DataOutputStream(cs.getOutputStream());// 得到輸出串流
+                    dout.writeUTF(MRCODE_CONNECT);// 向伺服器發送訊息
+
+                    din = new DataInputStream(cs.getInputStream());// 得到輸出串流
+                    in =din.readUTF();// 向伺服器發送訊息
+
+                    if(in.equalsIgnoreCase("Connected")) {
+                        Toast.makeText(getApplication(),"Connected",Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplication(),in,Toast.LENGTH_LONG).show();
+                    }
+
                 } catch (Exception e) {
-                    Toast.makeText(getApplication(), e.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), e.toString(), Toast.LENGTH_LONG).show(); // 列印異常資訊
+                } finally {// 用finally語句塊確保動作執行
+                    try {
+                        if (dout != null) dout.close();// 關閉輸入串流
+                        if (cs != null) cs.close();// 關閉Socket連接
+                    } catch (Exception e) {
+                        Toast.makeText(getApplication(), e.toString(),Toast.LENGTH_LONG).show();
+                    }
                 }
             }
-        }
+        };
     };
-
 }
