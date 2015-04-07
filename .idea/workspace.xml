@@ -17,9 +17,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.admin.actiongrasp" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca85f4b4-c3ce-4a23-988d-d86d7d911a28" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="ca85f4b4-c3ce-4a23-988d-d86d7d911a28" name="Default" comment="" />
     <ignored path="ActionGrasp.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
