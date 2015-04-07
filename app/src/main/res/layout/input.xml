@@ -15,6 +15,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:id="@+id/editTextIP"
         android:text="120.118.154.153"
         android:textSize="35dp"

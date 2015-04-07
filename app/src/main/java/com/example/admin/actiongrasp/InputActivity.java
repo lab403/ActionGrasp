@@ -26,18 +26,13 @@ public class InputActivity extends ActionBarActivity {
     private static int SERVER_PORT;
     private static DataOutputStream dout = null;
 
-    // thread1 - UI 主畫面
-    private Handler mUIHandler=new Handler();
+
 
     // thread2 - 廣播本機IP
     private Handler mThreadHandler;
     private HandlerThread mThread;
 
-    // thread3 - 接收serverIP
-    private Handler mThreadReciverHandler;
-    private HandlerThread mThreadReciver;
 
-    private boolean tThreadStop=false;
 
     // MRCode常數區段
     public final String MRCODE_TRUN_OFF = "MRCode_CC_02";
@@ -85,6 +80,7 @@ public class InputActivity extends ActionBarActivity {
             switch (Error) {
                 case 0:
                     mConnectServer();
+                    MES="連線中...";
                     break;
                 case 1:
                     MES = "請輸入IP";
@@ -97,7 +93,6 @@ public class InputActivity extends ActionBarActivity {
                     break;
             }
             Toast.makeText(getApplication(), MES, Toast.LENGTH_LONG).show(); // 列印異常資訊
-            Toast.makeText(getApplication(), MES, Toast.LENGTH_LONG).show();
         }
         // 方法:建立連線
         private void mConnectServer(){
@@ -110,7 +105,7 @@ public class InputActivity extends ActionBarActivity {
                     try {
                         mThread.interrupt();
                     } catch (Exception e) {
-                        Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplication(), "line:108=".toString(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
