@@ -58,6 +58,7 @@ public class ConnectionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
+         serverIP = (EditText) findViewById(R.id.editTextIP);
         butAut=(Button)findViewById(R.id.buttonAut);
         butAut.setOnClickListener(Aut);
         butManual=(Button)findViewById(R.id.buttonMan);
@@ -76,28 +77,73 @@ public class ConnectionActivity extends ActionBarActivity {
 
        @Override
        public void onClick(View v) {
-           Connect_Act(InputActivity.class);
+           mCheckIP();
+          // Connect_Act(InputActivity.class);
        }
    };
-   private void Connect_Act(Class target)
-   {
-       Intent intent=new Intent();
-       // Bundle bundle=new Bundle();
-       intent.setClass(ConnectionActivity.this,target);
-       startActivityForResult(intent,0);
-   }
+//   private void Connect_Act(Class target)
+//   {
+//       Intent intent=new Intent();
+//       // Bundle bundle=new Bundle();
+//       intent.setClass(ConnectionActivity.this,target);
+//       startActivityForResult(intent,0);
+//   }
+
+    private void mCheckIP(){
+        int Error = 0;
+        String IP4[] = serverIP.getText().toString().split("\\.");
+        if (serverIP.getText().toString().isEmpty()) {
+            //請輸入ip
+            Error = 1;
+        } else if (IP4.length != 4) {
+            //錯誤的ip格式
+            Error = 2;
+            /*
+                暫時去除檢查PORT功能,因為目前port都固定
+             */
+            //}else if(Integer.parseInt(serverPORT.getText().toString()) <= 0 ||
+            //        Integer.parseInt(serverPORT.getText().toString()) > 65535){
+            //    //錯誤的port
+            //    Error = 3;
+        } else
+            for (String IP : IP4)
+                if (Integer.parseInt(IP) < 0 || Integer.parseInt(IP) > 255)
+                    Error = 2;
+        String MES = null;
+        switch (Error) {
+            case 0:
+                mConnectServer();
+                MES="連線中...";
+                break;
+            case 1:
+                MES = "請輸入IP";
+                break;
+            case 2:
+                MES = "不正確的IP格式";
+                break;
+            case 3:
+                MES = "port錯誤";
+                break;
+        }
+        Toast.makeText(getApplication(), MES, Toast.LENGTH_LONG).show(); // 列印異常資訊
+
+    }
+
+
 
     // 方法:建立連線
     private void mConnectServer(){
-        SERVER_IP= serverIP.getText().toString();
+        if(serverIP!=null)      SERVER_IP= serverIP.getText().toString();
         SERVER_PORT = 3579;
 
         // 如thread存在則移除它
-        if(! mThread.isInterrupted()) {
-            try{
-                mThread.interrupt();
-            }catch(Exception e){
-                Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
+        if(mThread!=null) {
+            if (!mThread.isInterrupted()) {
+                try {
+                    mThread.interrupt();
+                } catch (Exception e) {
+                    Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
+                }
             }
         }
 
@@ -178,8 +224,7 @@ public class ConnectionActivity extends ActionBarActivity {
         @Override
         public void run() {
             // 把IP填入EDITTEXT
-          //  EditText serverIP = (EditText) findViewById(R.id.editTextIP);
-         //  serverIP.setText(SERVER_IP);
+          serverIP.setText(SERVER_IP);
 
             Toast.makeText(getBaseContext(), "IP="+SERVER_IP, Toast.LENGTH_LONG).show();
 
