@@ -1,18 +1,16 @@
 package com.example.admin.actiongrasp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.admin.actiongrasp.service.mMessageListener;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -63,6 +61,12 @@ public class ConnectionActivity extends ActionBarActivity {
         butAut.setOnClickListener(Aut);
         butManual=(Button)findViewById(R.id.buttonMan);
         butManual.setOnClickListener(Manual);
+        //-----------------------------------------------------------------------//
+        //                                                                       //
+        //after anything, we need change this to always open                     //
+        startService(new Intent(this,mMessageListener.class));                   //
+        //                                                                       //
+        //-----------------------------------------------------------------------//
     }
 
    private Button.OnClickListener Aut =new Button.OnClickListener(){

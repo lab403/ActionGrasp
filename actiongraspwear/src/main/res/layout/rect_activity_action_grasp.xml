@@ -5,5 +5,13 @@
     tools:context=".ActionGraspActivity" tools:deviceIds="wear_square">
 
     <TextView android:id="@+id/text" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:text="@string/hello_square" />
+        android:layout_height="wrap_content" android:text="@string/hello_square"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn"
+        android:id="@+id/btn"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

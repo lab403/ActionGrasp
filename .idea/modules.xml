@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ActionGrasp.iml" filepath="$PROJECT_DIR$/ActionGrasp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/actiongraspwear/actiongraspwear.iml" filepath="$PROJECT_DIR$/actiongraspwear/actiongraspwear.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
