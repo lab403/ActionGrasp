@@ -45,6 +45,9 @@ public class ActionGraspActivity extends Activity{
 
         setgoogleapi();
     }
+
+
+
     private void setgoogleapi()
     {
         if(mGoogleApiClient==null)
@@ -149,6 +152,24 @@ public class ActionGraspActivity extends Activity{
         {
             Log.e("test", "not connected");
         }
+    }
+
+    private void app_finish()
+    {
+        this.onDestroy();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        app_finish();
+        super.onStop();
     }
 
     @Override
