@@ -1,4 +1,4 @@
-package com.dfuse.viewpagerandroidwearsample;
+package com.example.admin.actiongrasp.ViewPager;
 
 import java.util.ArrayList;
 

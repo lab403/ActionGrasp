@@ -1,8 +1,10 @@
-package com.example.admin.actiongrasp.service;
+package com.example.admin.actiongrasp.mMessenger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.admin.actiongrasp.ViewPager.MainActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageEvent;
@@ -12,7 +14,7 @@ import com.google.android.gms.wearable.WearableListenerService;
 /**
  * Created by MurasakiYoru on 2015/4/8.
  */
-public class mMessageListener extends WearableListenerService
+public class mMessengeListener extends WearableListenerService
 {
 
     public static final String START_ACTIVITY_PATH = "/start/MainActivity";
@@ -74,11 +76,10 @@ public class mMessageListener extends WearableListenerService
         {
             Log.wtf(TAG,"function start");
 
-            /*
-            Intent intent = new Intent(this,InitialActivity.class);
+            Intent intent = new Intent(this,MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startService(intent);
-            return;*/
+            return;
         }
     }
 

@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.admin.actiongrasp.service.mMessageListener;
+import com.example.admin.actiongrasp.mMessenger.mMessengerSender;
+import com.example.admin.actiongrasp.mMessenger.mMessengerListener;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -64,9 +65,15 @@ public class ConnectionActivity extends ActionBarActivity {
         //-----------------------------------------------------------------------//
         //                                                                       //
         //after anything, we need change this to always open                     //
-        startService(new Intent(this,mMessageListener.class));                   //
-        //                                                                       //
+        startService(new Intent(this,mMessengerListener.class));                   //
+        //
+        //
+
+        mMessengerSender mM = new mMessengerSender(ConnectionActivity.this);
+        mM.sendMessage();
         //-----------------------------------------------------------------------//
+
+
     }
 
    private Button.OnClickListener Aut =new Button.OnClickListener(){

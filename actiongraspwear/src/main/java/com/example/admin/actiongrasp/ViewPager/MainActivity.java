@@ -1,4 +1,4 @@
-package com.dfuse.viewpagerandroidwearsample;
+package com.example.admin.actiongrasp.ViewPager;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.example.admin.actiongrasp.R;
 
 public class MainActivity extends Activity {
 
